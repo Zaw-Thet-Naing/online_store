@@ -1,0 +1,74 @@
+body{
+    background-color:lightgray;
+    height: 100vh;
+    background-image: url('https://media.istockphoto.com/photos/empty-dark-wooden-table-in-front-of-abstract-blurred-bokeh-background-picture-id1130714046?b=1&k=20&m=1130714046&s=170667a&w=0&h=MC8LticTUrt8xJ9MevhvuJEH49Rf6Psv8E50KKcPx0A=');
+    background-size: cover; 
+    width: 100%;
+    
+}
+.header{
+    background-color: gray;
+    text-align: center;
+    opacity: 0.9;
+    color: white;
+}
+.card{
+    border-radius: 10px;
+    margin-top: 20px;
+    opacity: 0.9;
+    height: 722.55px;
+    
+
+}
+
+.card-title{
+    background-color:aqua;
+    border-radius: 10px;
+    text-align: center;
+}
+img{
+   object-position: center;
+   width: 100%;
+   border-radius: 20px;
+   height: 300px;
+}
+.navbar-gp{
+    width: 100%; 
+}
+.carousel-img{
+    border-radius: 1px;
+    height: 500px;
+}
+footer{
+    background-color: antiquewhite;
+    text-align: center;
+    justify-items: center;
+}
+.btn{
+    box-sizing: content-box;
+}
+.container-1{
+    background-color: black;
+    height: 70px;
+   color: white;
+   display: flex;
+   justify-content: center;
+   
+}
+.menu{
+    color: white;
+    text-align: center;
+    background-color: black;
+}
+/* .card-text{
+    height:auto;
+    text-align: justify;
+   text-overflow: clip;
+  
+
+} */
+
+
+
+   
+   
