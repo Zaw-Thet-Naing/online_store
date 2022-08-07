@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SessionCartController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ItemController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,27 +21,11 @@ use App\Http\Controllers\Admin\ItemController;
 */
 
 Route::prefix("admin")->group(function() {
-    // Route::get("foo", function () {
-    //     return "foo page";
-    // });
-    // Route::redirect("bar", "foo");
-    // Route::view("landing", "welcome");
-    // Route::get("posts/{post}", function($post) {
-    //     echo $post;
-    // });
-    // Route::get("posts/{post}/comments/{comment}", function($post, $comment) {
-    //     echo $comment;
-    // });
-    
-    // Route::get("user/{user_id?}", function($user_id = "0") {
-    //     echo $user_id;
-    // })->name("user");
-
-    Route::resource("categories", CategoryController::class)->middleware("auth");
-    Route::resource("items", ItemController::class)->middleware("auth");
-    Route::get("/categories", [CategoryController::class, "index"]);
-    Route::get("/items", [ItemController::class, "index"]);
-    // Route::get("/category/{id}", [CategoryController::class, "show"]);
+    Route::redirect("/", "admin/orders");
+    Route::resource("categories", CategoryController::class);
+    Route::resource("items", ItemController::class);
+    Route::get("orders", [AdminOrderController::class, "index"]);
+    Route::get("cart", [SessionCartController::class, "cart"]);
 });
 
 // Route::view("/", "order");
@@ -48,6 +36,12 @@ Route::prefix("admin")->group(function() {
 // Route::view('detail','detail');
 
 Route::get("/", [PageController::class, "landing"]);
+Route::get("/buy/now/check/out/form/{item_id}", [OrderController::class, "buyNowCheckOutForm"]);
+Route::post("/buy/now/check/out/{item_id}", [OrderController::class, "buyNowCheckOut"]);
+Route::get("add/session/cart/{item_id}", [SessionCartController::class, "addSessionCart"]);
+
+Route::post("cart/check/out", [OrderController::class, "sessionOrderCheckout"]);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

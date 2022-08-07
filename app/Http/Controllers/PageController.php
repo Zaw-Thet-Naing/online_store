@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Item;
 
 class PageController extends Controller
 {
     public function landing() {
-        $categories = Category::all();
+        $items = Item::all();
         // compact("categories") = ["categories" => $categories]
-        return view("welcome", compact("categories"));
+        return view("welcome", compact("items"));
     }
 }

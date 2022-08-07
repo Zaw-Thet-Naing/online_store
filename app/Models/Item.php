@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    use HasFactory;  
+    use HasFactory;
+    function category() {
+        return $this->belongsTo(Category::class)->withDefault();
+    }
 }

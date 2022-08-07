@@ -22,12 +22,11 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                <a href="{{ url('admin/cart') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"><span class="badge badge-light">Cart</span></a>
                     @auth
                         <!-- <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a> -->
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                         <a href="{{ url('admin/categories') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Categories</a>
                         <a href="{{ url('admin/items') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Items</a>
                         <a href="{{ url('admin/orders') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Orders</a>
@@ -49,32 +48,23 @@
                         </g>
                     </svg>
                 </div>
-                @forelse($items as $item)
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
                             <div class="flex items-center">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold">{{$item->name}} / {{$item->category->name}}</div>
+                                <div class="ml-4 text-lg leading-7 font-semibold">Thanks you.</div>
                             </div>
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    {{$item->description}}
+                                    Your order is completed.
                                 </div>
                             </div>
 
-                            <a href="{{url('/buy/now/check/out/form/'.$item->id)}}">
-                                <button class="btn">Buy Now</button>
-                            </a>
-                            <a href="{{url('add/session/cart/' .$item->id)}}">
-                                <button class="btn">Add cart</button>
-                            </a>
                         </div>
                     </div>
                 </div>
-                @empty
-                @endforelse
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">

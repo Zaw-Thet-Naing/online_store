@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Category;
 
 class ItemController extends Controller
 {
@@ -21,21 +22,22 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('Item.create');
+        $categories = Category::all();
+        return view('Item.create', compact("categories"));
     }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $item = new Item();
         $item->name = $request->name;
         $item->description = $request->description;
-        $item->category_id = $request->category;
+        $item->category_id = $request->category_id;
         $item->price = $request->price;
         $item->quantity = $request->quantity;
         $item->image = $request->image;
@@ -43,12 +45,12 @@ class ItemController extends Controller
         return redirect('admin/items');
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
 
@@ -57,12 +59,12 @@ class ItemController extends Controller
         return view('Item.show', compact('item'));
     }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $item = Item::FindOrFail($id);
@@ -70,19 +72,19 @@ class ItemController extends Controller
         return view('Item.edit', compact('item'));
     }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $item = Item::findOrFail($id);
         $item->name = $request->name;
         $item->description = $request->description;
-        $item->category_id = $request->category;
+        $item->category_id = $request->category_id;
         $item->price = $request->price;
         $item->quantity = $request->quantity;
         $item->image = $request->image;
@@ -90,12 +92,12 @@ class ItemController extends Controller
         return redirect('admin/items');
     }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $item = Item::findOrFail($id);

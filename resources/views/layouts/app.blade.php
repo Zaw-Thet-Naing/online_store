@@ -54,7 +54,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ucfirst(Request::segment(2))}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -66,6 +66,8 @@
 
                                     <a href="{{ url('admin/categories') }}" class="dropdown-item">Categories</a>
                                     <a href="{{ url('admin/items') }}" class="dropdown-item">Items</a>
+                                    <a href="{{ url('admin/orders') }}" class="dropdown-item">Orders</a>
+                                    <a href="{{ url('admin/cart') }}" class="dropdown-item">Carts</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

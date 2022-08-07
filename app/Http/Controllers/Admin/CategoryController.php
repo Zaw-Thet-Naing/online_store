@@ -39,11 +39,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->save();
-        return redirect('admin/category');
+        // $category = new Category();
+        // $category->name = $request->name;
+        // $category->description = $request->description;
+        // $category->save();
+        $category = Category::create($request->all());
+        return redirect('admin/categories');
     }
 
     /**
@@ -56,7 +57,6 @@ class CategoryController extends Controller
     {
 
         $category = Category::findOrFail($id);
-        // dd($category);
         return view('Category.show', compact('category'));
     }
 
@@ -86,7 +86,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         $category->update();
-        return redirect('admin/category');
+        return redirect('admin/categories');
     }
 
     /**
@@ -99,6 +99,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect('admin/category');
+        return redirect('admin/categories');
     }
 }

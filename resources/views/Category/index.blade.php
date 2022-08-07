@@ -12,6 +12,7 @@
                         <th>id</th>
                         <th>name</th>
                         <th>description</th>
+                        <th>Related items</th>
                         <th>created_at</th>
                         <th>updated_at</th>
                         <th>operation</th>
@@ -22,6 +23,12 @@
                         <td>{{$category->id}}</td>
                         <td>{{$category->name}}</td>
                         <td>{{$category->description}}</td>
+                        <td>
+                            @forelse($category->items as $item)
+                                {{$item->name}}, 
+                            @empty
+                            @endforelse
+                        </td>
                         <td>{{$category->created_at}}</td>
                         <td>{{$category->updated_at}}</td>
                         <td>

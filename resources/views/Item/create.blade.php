@@ -13,7 +13,13 @@
                         @csrf
                         <div class="form-group">
                             <label for="" class="form-label">Category</label>
-                            <input type="text"  name="category" class="form-control" required>
+                            <select name="category_id" id="" class="form-control" required>
+                                <option value="" class="form-control">Please Select</option>
+                                @forelse($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @empty
+                                @endforelse
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label">name</label>
@@ -25,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label">Price</label>
-                            <input type="number"  name="price" class="form-control" required>
+                            <input type="float"  name="price" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-label">Quantity</label>
